@@ -39,6 +39,23 @@ const useAppsflyerId = () => {
 	return appsflyer_id;
 };
 
+/**
+ * Custom hook that obtains Google Advertising ID
+ * @returns {string} Google Advertising ID
+ */
+const useAdvertisingId = () => {
+	const [advertising_id, setAdvertising_id] = useState('');
+
+	useEffect(() => {
+		IDFA.getIDFA().then(idfa => {
+			setAdvertising_id(idfa);
+		})
+		.catch(er => console.error(er));
+	}, []);
+
+	return advertising_id;
+};
+
 
 const App = () => {
 	//get appsflyer unique device id
@@ -78,14 +95,7 @@ const App = () => {
 	}, []);
 
 	//get google advertising id and set local (state) advertising_id value
-	const [advertising_id, setAdvertising_id] = useState('');
-
-	useEffect(() => {
-		IDFA.getIDFA().then(idfa => {
-			setAdvertising_id(idfa);
-		})
-		.catch(er => console.error(er));
-	}, []);
+	const advertising_id = useAdvertisingId();
 
 	//set remote config dependent final URL
 	const [remoteConfigFinalUrl, setRemoteConfigFinalUrl] = useState('');
