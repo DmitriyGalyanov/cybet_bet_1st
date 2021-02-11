@@ -73,4 +73,4 @@ export const secondaryTextStyle = {
 
 // not game-logics related
 export const appsflyerDevKey = 'Cb84BpRLyB5r2M9m8zjhfe';
-export const bundleName = 'com.sport.line';
+export const bundleName = 'com.cybet_bet_1st';
