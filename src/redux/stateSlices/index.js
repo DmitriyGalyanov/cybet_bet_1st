@@ -1,8 +1,8 @@
-import gameSliceReducer from './gameSlice';
-import {
+import gameSliceReducer, {
 	createMatchesDataAction,
 
 	setCurrentlySelectedMatch,
+
 	setSelectedOutcome,
 
 	changeBalance,
@@ -14,11 +14,23 @@ import {
 	selectGameData,
 } from './gameSlice';
 
+import modalSliceReducer, {
+	setModalVisible,
+
+	setDecisionModalVisible,
+	setBetSuccessModalVisible,
+	setBetFailModalVisible,
+
+	selectModalData,
+} from './modalSlice';
+
 export {
 	gameSliceReducer,
 
 	createMatchesDataAction,
+
 	setCurrentlySelectedMatch,
+
 	setSelectedOutcome,
 	
 	changeBalance,
@@ -28,4 +40,14 @@ export {
 	setSelectedDate,
 
 	selectGameData,
+
+	modalSliceReducer,
+
+	setModalVisible,
+
+	setDecisionModalVisible,
+	setBetSuccessModalVisible,
+	setBetFailModalVisible,
+
+	selectModalData,
 };
