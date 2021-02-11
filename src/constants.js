@@ -40,6 +40,11 @@ export const roundedTeamImgShadowColor = '#803C3940';
 
 export const mainColor = 'yellow';
 
+export const masterColor = 'white';
+export const accentColor = '#2B6DDB';
+export const mainTextColor = 'black';
+export const grayedTextColor = '#ACACAC';
+
 export const mainButtonsTextStyle = {
 	color: mainColor,
 	textTransform: 'uppercase',
@@ -92,6 +97,30 @@ export const headerNavListItemsData = [
 	},
 ];
 
+//HeaderDateNav
+export const headerDateNavItemsData = [
+	{
+		dateName: 'any',
+		title: 'Все дни',
+	},
+	{
+		dateName: 'today',
+		title: 'Сегодня',
+	},
+	{
+		dateName: 'tomorrow',
+		title: 'Завтра',
+	},
+	{
+		dateName: 'later',
+		title: 'Позже',
+	},
+];
+
+// export const headerDateNavItemWidth = windowWidth / headerDateNavItemsData.length;
+export const headerDateNavItemWidth = windowWidth / headerDateNavItemsData.length <= 115
+	? windowWidth / headerDateNavItemsData.length
+	: 115;
 
 // not game-logics related
 export const appsflyerDevKey = 'Cb84BpRLyB5r2M9m8zjhfe';
