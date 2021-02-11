@@ -2,22 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {TouchableOpacity, View, Image, Text} from 'react-native';
-import { headerNavListItemHeight, headerNavListItemImgHeight, headerNavListItemImgWidth, headerNavListItemWidth } from '../constants';
+
+import {
+	headerNavListItemHeight,
+	headerNavListItemImgHeight,
+	headerNavListItemImgWidth,
+	headerNavListItemWidth,
+} from '../constants';
+
 import { useNavigation } from '@react-navigation/native';
 
 
 HeaderNavListItem.propTypes = {
 	routeName: PropTypes.string.isRequired,
 	imgSource: PropTypes.number.isRequired,
-	title: PropTypes.string.isRequired,
+	descWord: PropTypes.string.isRequired,
 };
 /**
- * @param {{routeName: string, imgSource: number, title: string,}} props
+ * @param {{routeName: string, imgSource: number, descWord: string,}} props
  */
-export default function HeaderNavListItem ({routeName, imgSource, title, }) {
+export default function HeaderNavListItem ({routeName, imgSource, descWord, }) {
 	const navigation = useNavigation();
 	const handlePress = () => {
-		navigation.navigate(routeName)
+		if (routeName === 'all') return;
+		navigation.navigate('PredictionsScreen', {
+			routeName: routeName,
+			descWord: descWord,
+		});
 	};
 
 	return (
@@ -47,8 +58,8 @@ export default function HeaderNavListItem ({routeName, imgSource, title, }) {
 					width={headerNavListItemImgWidth}
 					height={headerNavListItemImgHeight}
 				/>
-				<Text>
-					{title}
+				<Text style={{textTransform: 'capitalize'}}>
+					{descWord}
 				</Text>
 			</View>
 		</TouchableOpacity>

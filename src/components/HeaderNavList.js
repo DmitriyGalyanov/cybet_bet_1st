@@ -3,19 +3,19 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import HeaderNavListItem from './HeaderNavListItem';
 
-import {headerNavListItemsData} from '../constants';
+import {routesList} from '../constants';
 
 export default function HeaderNavList() {
 
 	return (
 		<ScrollView horizontal>
-			{headerNavListItemsData.map((listItem, index) => {
-				const {routeName, imgSource, title} = listItem;
+			{routesList.map((listItem, index) => {
+				const {routeName, imgSource, descWord} = listItem;
 				return (
 					<HeaderNavListItem key={index}
 						routeName={routeName}
 						imgSource={imgSource}
-						title={title}
+						descWord={descWord}
 					/>
 				)
 			})}
