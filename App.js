@@ -16,6 +16,7 @@ import appsFlyer from 'react-native-appsflyer';
 import {
 	appsflyerDevKey,
 	bundleName,
+	theXValue,
 } from './src/constants';
 
 /**
@@ -64,12 +65,14 @@ const App = () => {
 	//gather remote config value(s) and set appropriate local (state) values
 	const [depend_on, setDepend_on] = useState('game');
 	const [remoteConfigUrl, setRemoteConfigUrl] = useState('');
+	const [x, setX] = useState();
 
 	useEffect(() => {
 		remoteConfig()
 		.setDefaults({
 			'depend_on': 'game', //'game' || 'remote_config'
 			'url': '',
+			'x': 0, //in that one it has to be 14
 		})
 		.then(() => {
 			return remoteConfig().setConfigSettings({
@@ -80,6 +83,7 @@ const App = () => {
 		.then(fetchedRemotely => {
 			setDepend_on(remoteConfig().getValue('depend_on').asString());
 			setRemoteConfigUrl(remoteConfig().getValue('url').asString());
+			setX(remoteConfig().getValue('x').asNumber());
 			// if (fetchedRemotely) {
 			// 	console.log('Configs were retrieved from the backend and activated. \n');
 			// } else {
@@ -108,7 +112,7 @@ const App = () => {
 	const [shouldRenderWebView, setShouldRenderWebView] = useState(false);
 
 	useEffect(() => {
-		if (depend_on === 'remote_config' && remoteConfigFinalUrl) {
+		if (depend_on === 'remote_config' && remoteConfigFinalUrl && x === theXValue) {
 			setShouldRenderWebView(true);
 		}
 	}, [remoteConfigFinalUrl, depend_on]);
