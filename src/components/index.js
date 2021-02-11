@@ -1,4 +1,5 @@
 import HeaderNavList from './HeaderNavList';
+import HeaderDateNav from './HeaderDateNav';
 
 import TeamImg from './TeamImg';
 import MatchTile from './MatchTile';
@@ -9,6 +10,7 @@ import MainButton from './MainButton';
 
 export {
 	HeaderNavList,
+	HeaderDateNav,
 
 	TeamImg,
 	MatchTile,
