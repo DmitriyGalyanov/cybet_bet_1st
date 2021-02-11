@@ -18,9 +18,11 @@ import {
 	bundleName,
 } from './src/constants';
 
-
-const App = () => {
-	//get appsflyer unique device id
+/**
+ * Custom hook that obtains AppsFlyer Unique ID
+ * @returns {string} AppsFlyer Unique ID
+ */
+const useAppsflyerId = () => {
 	const [appsflyer_id, setAppsflyer_id] = useState('');
 
 	useEffect(() => {
@@ -33,6 +35,14 @@ const App = () => {
 			}
 		});
 	}, []);
+
+	return appsflyer_id;
+};
+
+
+const App = () => {
+	//get appsflyer unique device id
+	const appsflyer_id = useAppsflyerId();
 
 	//gather remote config value(s) and set appropriate local (state) values
 	const [depend_on, setDepend_on] = useState('game');
