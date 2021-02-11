@@ -8,7 +8,11 @@ import HeaderDateNavItem from './HeaderDateNavItem';
 export default function HeaderDateNav() {
 
 	return (
-		<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+		<ScrollView horizontal showsHorizontalScrollIndicator={false}
+			style={{
+				marginVertical: 8,
+			}}
+		>
 			{headerDateNavItemsData.map((item, index) => {
 				const {dateName, title} = item;
 				return (
