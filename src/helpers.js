@@ -9,6 +9,36 @@ export const getRandomIntInclusive = (min, max) => {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+import {Animated, Easing} from 'react-native';
+
+/**
+ * 
+ * @param {React.MutableRefObject<Animated.Value>} animatableValue
+ * @param {number} toValue
+ * @param {number} animDuration in milliseconds
+ */
+export const animateValue = (animatableValue, toValue, animDuration) => {
+	Animated.timing(animatableValue.current, {
+		toValue: toValue,
+		duration: animDuration,
+		useNativeDriver: false,
+	}).start();
+};
+
+/**
+ * 
+ * @param {React.MutableRefObject<Animated.Value>} animatableValue
+ * @param {number} toValue
+ * @param {number} animDuration in milliseconds
+ */
+export const easingAnimateValue = (animatableValue, toValue, animDuration) => {
+	Animated.timing(animatableValue.current, {
+		toValue: toValue,
+		duration: animDuration,
+		useNativeDriver: true,
+		easing: Easing.out(Easing.quad),
+	}).start();
+};
 
 import { initialMatchesAmount } from "./constants";
 import {teamsAmount} from '../assets/images';
