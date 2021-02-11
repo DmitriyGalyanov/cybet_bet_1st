@@ -34,6 +34,8 @@ export const teamImagesArray = [ //football teams
 export const teamsAmount = teamImagesArray.length; //football teams
 
 export const headerNavListItemsArray = [
-	require('./footballIcon.png'), //replace with 'toAllIcon.png'
+	require('./allIcon.png'), //replace with 'toAllIcon.png'
 	require('./footballIcon.png'),
 ];
+
+export const confetti = require('./confetti.png');
