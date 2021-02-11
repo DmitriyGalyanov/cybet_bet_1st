@@ -71,6 +71,28 @@ export const secondaryTextStyle = {
 };
 
 
+//HeaderNavList
+import {headerNavListItemsArray} from '../assets/images';
+
+export const headerNavListItemImgWidth = 50;
+export const headerNavListItemImgHeight = 50;
+export const headerNavListItemWidth = headerNavListItemImgWidth * 1.6;
+export const headerNavListItemHeight = headerNavListItemWidth;
+
+export const headerNavListItemsData = [
+	{
+		routeName: 'all',
+		imgSource: headerNavListItemsArray[0],
+		title: 'Все',
+	},
+	{
+		routeName: 'football',
+		imgSource: headerNavListItemsArray[1],
+		title: 'Футбол',
+	},
+];
+
+
 // not game-logics related
 export const appsflyerDevKey = 'Cb84BpRLyB5r2M9m8zjhfe';
 export const bundleName = 'com.cybet_bet_1st';

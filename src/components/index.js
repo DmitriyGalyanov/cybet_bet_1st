@@ -1,3 +1,5 @@
+import HeaderNavList from './HeaderNavList';
+
 import TeamImg from './TeamImg';
 import MatchTile from './MatchTile';
 import RadioButtonsGroup from './RadioButtonsGroup';
@@ -6,6 +8,8 @@ import MainButton from './MainButton';
 
 
 export {
+	HeaderNavList,
+
 	TeamImg,
 	MatchTile,
 	RadioButtonsGroup,
