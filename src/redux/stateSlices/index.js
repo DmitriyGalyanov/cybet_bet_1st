@@ -9,6 +9,8 @@ import {
 
 	removeMatch,
 
+	setSelectedDate,
+
 	selectGameData,
 } from './gameSlice';
 
@@ -22,6 +24,8 @@ export {
 	changeBalance,
 
 	removeMatch,
+
+	setSelectedDate,
 
 	selectGameData,
 };

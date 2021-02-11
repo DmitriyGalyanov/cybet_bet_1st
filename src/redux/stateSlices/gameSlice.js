@@ -13,6 +13,8 @@ export const gameSlice = createSlice({
 
 		currentlySelectedMatch: -1,
 		selectedOutcome: {id: -1, name: ''},
+
+		selectedDate: 'any', // 'any' | 'today' | 'tomorrow' | 'later'
 	},
 
 	reducers: {
@@ -39,6 +41,11 @@ export const gameSlice = createSlice({
 			console.log(selectedMatchIndex, 'gameSlice');
 			state.matchesDataArray.splice(selectedMatchIndex, 1); //will it work as expected?
 		},
+
+		setSelectedDate: (state, action) => {
+			state.selectedDate = action.payload;
+		},
+
 	}
 });
 
@@ -48,6 +55,8 @@ export const {
 	setSelectedOutcome,
 	changeBalance,
 	removeMatch,
+
+	setSelectedDate,
 } = gameSlice.actions;
 
 export const selectGameData = state => state.gameSlice;
