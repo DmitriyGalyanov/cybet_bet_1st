@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644081308019",
+    "project_id": "cyber-bet-1st",
+    "storage_bucket": "cyber-bet-1st.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644081308019:android:d22a9ecc3f7d33b1037506",
+        "android_client_info": {
+          "package_name": "com.cybet_bet_1st"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644081308019-f50uft08dpnu9eu3vabe09d5ftemeo0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTt6PQEnb8eNFh5-y9v_2HR2vb7dz38B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644081308019-f50uft08dpnu9eu3vabe09d5ftemeo0t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
