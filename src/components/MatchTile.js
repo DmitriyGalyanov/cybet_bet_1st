@@ -8,87 +8,121 @@ import {
 	Text,
 } from 'react-native';
 import TeamImg from './TeamImg';
-import { matchTileTextStyle, matchTileBGColor, matchTileWidth, teamImgInTileHeight, teamImgInTileWidth } from '../constants';
+
+import {
+	matchTileBGColor,
+	teamImgInTileHeight,
+	teamImgInTileWidth,
+	grayedTextColor,
+	mainTextColor,
+	masterColor,
+	accentColor,
+	matchTileMaxWidth,
+} from '../constants';
+
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import { setCurrentlySelectedMatch } from '../redux/stateSlices';
+import { setCurrentlySelectedMatch, setDecisionModalVisible, setModalVisible } from '../redux/stateSlices';
 
 
 MatchTile.propTypes = {
 	matchId: PropTypes.number.isRequired,
 	firstTeamId: PropTypes.number.isRequired,
-	matchCurrentTime: PropTypes.string.isRequired,
+	matchStartDate: PropTypes.string.isRequired,
+	matchStartTime: PropTypes.string.isRequired,
 	secondTeamId: PropTypes.number.isRequired,
 	coefficients: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.number,
 		outcomeName: PropTypes.string,
 		coefficient: PropTypes.number,
 	})).isRequired,
+	descWord: PropTypes.string.isRequired,
 };
 /**
- * 
- * @param {{matchId: number, firstTeamId: number, matchCurrentTime: string, secondTeamId: number, coefficients: [...{id: number, outcomeName: string, coefficient: number}]}} props
+ * @param {{
+ * matchId: number,
+ * firstTeamId: number,
+ * matchStartDate: string,
+ * matchStartTime: string,
+ * secondTeamId: number,
+ * coefficients: [...{
+ * 	id: number,
+ * 	outcomeName: string,
+ * 	coefficient: number
+ * }],
+ * descWord: string,
+ * }} props
  */
 export default function MatchTile({
 	matchId,
 	firstTeamId,
-	matchCurrentTime,
+	matchStartDate,
+	matchStartTime,
 	secondTeamId,
 	coefficients,
+	descWord,
 }) {
 	const dispatch = useDispatch();
 
 	const navigation = useNavigation();
 	const navigateToMakeBetScreen = () => {
 		dispatch(setCurrentlySelectedMatch(matchId));
-		navigation.navigate('MakeBetScreen', {
-			matchId: matchId,
-		});
+		dispatch(setModalVisible(true));
+		dispatch(setDecisionModalVisible(true));
+		// navigation.navigate('MakeBetScreen', {
+		// 	matchId: matchId,
+		// });
 	};
 
 	return (
-		<TouchableOpacity onPress={navigateToMakeBetScreen}>
+		<TouchableOpacity onPress={navigateToMakeBetScreen}
+			style={{
+				backgroundColor: matchTileBGColor,
+				elevation: 3,
+				margin: 3,
+				borderRadius: 10,
+				alignItems: 'center',
+			}}
+		>
+			<View style={styles.decor} />
 			<View style={styles.wrap}>
-				<View style={styles.teamInfoWrap}>
+				<View style={styles.topPart}>
 					<TeamImg
 						teamId={firstTeamId}
 						width={teamImgInTileWidth}
 						height={teamImgInTileHeight}
-						rounded
 					/>
-					<Text style={styles.coefficientText}>
-						{coefficients[0].coefficient}
-					</Text>
-				</View>
-
-				<View style={styles.middlePartWrap}>
-					<View style={styles.middlePartTopPartWrap}>
-						<Text style={[matchTileTextStyle, styles.middlePartText]}>
-							ВРЕМЯ
-						</Text>
-						<Text style={[matchTileTextStyle, styles.middlePartText]}>
-							{matchCurrentTime}
+					<View style={styles.date}>
+						<Text style={styles.dateText}>
+							{matchStartDate}
 						</Text>
 					</View>
-					<View style={styles.middlePartBottomPartWrap}>
-						<Text style={[matchTileTextStyle, styles.middlePartText]}>
-							НИЧЬЯ
-						</Text>
-						<Text style={[matchTileTextStyle, styles.middlePartText]}>
-						{coefficients[1].coefficient}
-						</Text>
-					</View>
-				</View>
-
-				<View style={styles.teamInfoWrap}>
 					<TeamImg
 						teamId={secondTeamId}
 						width={teamImgInTileWidth}
 						height={teamImgInTileHeight}
-						rounded
 					/>
-					<Text style={styles.coefficientText}>
-					{coefficients[2].coefficient}
+				</View>
+
+				<View style={styles.coefficientsWrap}>
+					{coefficients.map(coef => {
+						const {id, outcomeName, coefficient} = coef;
+						return (
+							<View style={styles.coef} key={id}>
+								<Text style={styles.coefText}>
+									{coefficient}
+								</Text>
+							</View>
+						)
+					})}
+				</View>
+
+				<View style={styles.footer}>
+					<Text style={styles.footerText}>
+						{descWord}
+					</Text>
+					<Text style={styles.footerText}>
+						{matchStartTime}
 					</Text>
 				</View>
 			</View>
@@ -97,28 +131,62 @@ export default function MatchTile({
 }
 
 const styles = StyleSheet.create({
-	wrap: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		width: matchTileWidth,
-		backgroundColor: matchTileBGColor,
-		borderRadius: 14,
-		paddingTop: 14,
-		paddingHorizontal: 12,
-		paddingBottom: 4,
+	decor: {
+		position: 'absolute',
+		top: -1,
+		height: 4,
+		backgroundColor: accentColor,
+		width: 150,
+		borderRadius: 4,
 	},
 
-	teamInfoWrap: {
+	wrap: {
+		borderRadius: 14,
+		paddingTop: 6,
+		paddingHorizontal: 8,
+		paddingBottom: 4,
+		maxWidth: matchTileMaxWidth,
+	},
+
+	topPart: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+	},
+	date: {
+		paddingTop: 8,
+		fontWeight: 'bold',
+	},
+	dateText: {
+		color: mainTextColor,
+	},
+
+	coefficientsWrap: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+	},
+	coef: {
+		backgroundColor: '#3A4453',
+		paddingVertical: 3,
+		paddingHorizontal: 6,
+		borderRadius: 3,
+		minWidth: 45,
 		alignItems: 'center',
+		justifyContent: 'center',
+		marginTop: 4,
 	},
-	coefficientText: matchTileTextStyle,
-	
-	middlePartWrap: {
+	coefText: {
+		color: masterColor,
+		fontWeight: 'bold',
+	},
+
+	footer: {
+		flexDirection: 'row',
 		justifyContent: 'space-between',
+		paddingHorizontal: 8,
+		marginTop: 12,
 	},
-	middlePartTopPartWrap: {},
-	middlePartBottomPartWrap: {},
-	middlePartText: {
-		textAlign: 'center',
+	footerText: {
+		color: grayedTextColor,
+		textTransform: 'capitalize',
 	},
 });
