@@ -1,15 +1,24 @@
 import React, { useEffect } from 'react';
 
-import {MatchesListScreen, MakeBetScreen, BetResultScreen} from '../gameScreens';
+import {
+	MainGameScreen,
+	PredictionsScreen,
+	MatchesListScreen,
+	MakeBetScreen,
+	BetResultScreen,
+} from '../gameScreens';
+import {BottomModal} from '../components';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { createMatchesDataAction, selectGameData } from '../redux/stateSlices';
+
 import { mainBGColor, mainColor, navigationHeaderBarHeight } from '../constants';
 
-const Stack = createStackNavigator();
 
+const Stack = createStackNavigator();
 
 export default function Game() {
 	const {balance} = useSelector(selectGameData);
@@ -31,8 +40,9 @@ export default function Game() {
 	}, [matchesDataArray]);
 
 	return (
+		<>
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName='MatchesListScreen'
+			<Stack.Navigator initialRouteName='MainGameScreen'
 				screenOptions={{
 					title: `Баланс: ${balance}`,
 					headerTitleAlign: 'center',
@@ -44,6 +54,9 @@ export default function Game() {
 				}}
 				
 			>
+				<Stack.Screen name='MainGameScreen' component={MainGameScreen} />
+				<Stack.Screen name='PredictionsScreen' component={PredictionsScreen} />
+
 				<Stack.Screen name='MatchesListScreen' component={MatchesListScreen} />
 				<Stack.Screen name='MakeBetScreen' component={MakeBetScreen} />
 				<Stack.Screen name='BetResultScreen' component={BetResultScreen}
@@ -53,5 +66,7 @@ export default function Game() {
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
+		<BottomModal />
+		</>
 	)
 }
