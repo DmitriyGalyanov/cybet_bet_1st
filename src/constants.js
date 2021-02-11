@@ -6,9 +6,6 @@ export {windowWidth, windowHeight};
 
 export const gameScreenPadding = 8;
 
-export const teamImgInTileWidth = windowWidth * 0.2;
-export const teamImgInTileHeight = teamImgInTileWidth;
-
 export const teamImgWidth = windowWidth * 0.2;
 export const teamImgHeight = teamImgWidth;
 
@@ -30,16 +27,10 @@ export const resultsInRuArray = [
 //styles
 export const mainBGColor = '#242422';
 
-export const matchTileWidth = windowWidth * 0.9;
-export const matchTileHeight = matchTileWidth * 0.5; //
-export const matchTileBGColor = '#404040';
-
 export const roundedTeamImgBGColor = '#615C68';
 export const roundedTeamImgShadowColor = '#803C3940';
 
-
 export const mainColor = 'yellow';
-
 export const masterColor = 'white';
 export const accentColor = '#2B6DDB';
 export const mainTextColor = 'black';
@@ -50,11 +41,6 @@ export const mainButtonsTextStyle = {
 	textTransform: 'uppercase',
 	fontSize: 18,
 	fontWeight: 'bold',
-};
-
-export const matchTileTextStyle = {
-	color: mainColor,
-	fontSize: 18,
 };
 
 export const coloredHeadersTextStyle = {
@@ -75,27 +61,27 @@ export const secondaryTextStyle = {
 	fontSize: 20,
 };
 
-
-//HeaderNavList
+//routes
 import {headerNavListItemsArray} from '../assets/images';
 
+export const routesList = [
+	{
+		routeName: 'all',
+		imgSource: headerNavListItemsArray[0],
+		descWord: 'всё',
+	},
+	{
+		routeName: 'footballPredictionsScreen',
+		imgSource: headerNavListItemsArray[1],
+		descWord: 'футбол',
+	},
+];
+
+//HeaderNavList
 export const headerNavListItemImgWidth = 50;
 export const headerNavListItemImgHeight = 50;
 export const headerNavListItemWidth = headerNavListItemImgWidth * 1.6;
 export const headerNavListItemHeight = headerNavListItemWidth;
-
-export const headerNavListItemsData = [
-	{
-		routeName: 'all',
-		imgSource: headerNavListItemsArray[0],
-		title: 'Все',
-	},
-	{
-		routeName: 'football',
-		imgSource: headerNavListItemsArray[1],
-		title: 'Футбол',
-	},
-];
 
 //HeaderDateNav
 export const headerDateNavItemsData = [
@@ -121,6 +107,26 @@ export const headerDateNavItemsData = [
 export const headerDateNavItemWidth = windowWidth / headerDateNavItemsData.length <= 115
 	? windowWidth / headerDateNavItemsData.length
 	: 115;
+
+//PredictionsSection
+export const predictionsSectionImgWidth = 60;
+export const predictionsSectionImgHeight = 60;
+//MatchTile
+export const matchTileMaxWidth = (windowWidth / 2) - 6; //double margin
+export const matchTileBGColor = masterColor;
+
+export const teamImgInTileWidth = 50;
+export const teamImgInTileHeight = teamImgInTileWidth;
+
+//modal
+export const teamImgInModalWidth = 70;
+export const teamImgInModalHeight = teamImgInModalWidth;
+
+export const confettiWidth = windowWidth * 0.3;
+export const confettiHeight = confettiWidth * 1.14;
+
+//
+export const bottomNavBarHeight = 60;
 
 // not game-logics related
 export const appsflyerDevKey = 'Cb84BpRLyB5r2M9m8zjhfe';
