@@ -1,5 +1,8 @@
 import HeaderNavList from './HeaderNavList';
 import HeaderDateNav from './HeaderDateNav';
+import PredictionsSection from './PredictionsSection';
+
+import BottomModal from './BottomModal';
 
 import TeamImg from './TeamImg';
 import MatchTile from './MatchTile';
@@ -11,6 +14,9 @@ import MainButton from './MainButton';
 export {
 	HeaderNavList,
 	HeaderDateNav,
+	PredictionsSection,
+
+	BottomModal,
 
 	TeamImg,
 	MatchTile,
