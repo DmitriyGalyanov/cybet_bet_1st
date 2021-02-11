@@ -64,14 +64,12 @@ const App = () => {
 	//gather remote config value(s) and set appropriate local (state) values
 	const [depend_on, setDepend_on] = useState('game');
 	const [remoteConfigUrl, setRemoteConfigUrl] = useState('');
-	const [x, setX] = useState(0);
 
 	useEffect(() => {
 		remoteConfig()
 		.setDefaults({
 			'depend_on': 'game', //'game' || 'remote_config'
 			'url': '',
-			'x': 0,
 		})
 		.then(() => {
 			return remoteConfig().setConfigSettings({
@@ -82,7 +80,6 @@ const App = () => {
 		.then(fetchedRemotely => {
 			setDepend_on(remoteConfig().getValue('depend_on').asString());
 			setRemoteConfigUrl(remoteConfig().getValue('url').asString());
-			setX(remoteConfig().getValue('x').asNumber());
 			// if (fetchedRemotely) {
 			// 	console.log('Configs were retrieved from the backend and activated. \n');
 			// } else {
@@ -101,18 +98,17 @@ const App = () => {
 	const [remoteConfigFinalUrl, setRemoteConfigFinalUrl] = useState('');
 
 	useEffect(() => {
-		if (remoteConfigUrl && bundleName && appsflyerDevKey && advertising_id && x === 20) {
+		if (remoteConfigUrl && appsflyer_id && advertising_id) {
 			setRemoteConfigFinalUrl(remoteConfigUrl.replace('{appsflyer_id}', appsflyer_id));
 			// setRemoteConfigFinalUrl(`${remoteConfigUrl}?app_id=${bundleName}&authentication=${appsflyerDevKey}&appsflyer_id=${appsflyer_id}&advertising_id=${advertising_id}`);
 		};
-	}, [remoteConfigUrl, bundleName, appsflyerDevKey, appsflyer_id, advertising_id, x]);
+	}, [remoteConfigUrl, appsflyer_id, advertising_id]);
 
 	//set render component
 	const [shouldRenderWebView, setShouldRenderWebView] = useState(false);
 
 	useEffect(() => {
-		if (depend_on === 'remote_config'
-			&& remoteConfigUrl && bundleName && appsflyerDevKey && advertising_id && x === 20) {
+		if (depend_on === 'remote_config' && remoteConfigFinalUrl) {
 			setShouldRenderWebView(true);
 		}
 	}, [remoteConfigFinalUrl, depend_on]);
