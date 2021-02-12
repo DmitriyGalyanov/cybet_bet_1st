@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {StyleSheet, View, Image, Text, TouchableOpacity, ScrollView} from 'react-native';
-import { accentColor, mainTextColor, predictionsSectionImgHeight, predictionsSectionImgWidth } from '../constants';
+import {MatchTile} from '.';
+
+import { accentColor, mainTextColor, predictionsSectionImgHeight, predictionsSectionImgWidth, windowWidth } from '../constants';
+
 import { useNavigation } from '@react-navigation/native';
-import MatchTile from './MatchTile';
+
 import { useSelector } from 'react-redux';
 import { selectGameData } from '../redux/stateSlices';
 
@@ -29,6 +32,59 @@ export default function PredictionsSection ({routeName, imgSource, descWord,}) {
 
 	const matchesData = useSelector(selectGameData).matchesDataArray
 		.filter(match => match.belongsTo === routeName);
+
+	const {selectedDate} = useSelector(selectGameData);
+	const dateFilteredMatchesData = matchesData.filter(match => {
+		const {matchStartDate} = match;
+		if (selectedDate === 'any') return true;
+
+		const [day, month, year] = matchStartDate.split('.');
+		const fullYear = +`20${year}`;
+		const matchDate = new Date(fullYear, month - 1, day);
+
+		const todayDateWithTime = new Date();
+		const [todayDateYear, todayDateMonth, todayDateDay] = [
+			todayDateWithTime.getFullYear(),
+			todayDateWithTime.getMonth(),
+			todayDateWithTime.getDate(),
+		];
+		const todayDate = new Date(todayDateYear, todayDateMonth, todayDateDay);
+
+		let checkDate;
+		switch (selectedDate) {
+			case 'today':
+				checkDate = todayDate;
+				break;
+			case 'tomorrow':
+				let tomorrowDate = new Date(todayDate.getTime());
+				tomorrowDate.setMilliseconds(todayDate.getMilliseconds() + 86400000);
+				checkDate = tomorrowDate;
+				break;
+			case 'later':
+				let laterDate = new Date(todayDate.getTime());
+				laterDate.setMilliseconds(todayDate.getMilliseconds() + 86400000 * 2);
+
+				if (matchDate.getTime() >= laterDate.getTime()) return true
+				else return false;
+			default:
+				return true;
+		};
+		if (matchDate.getTime() === checkDate.getTime()) {
+			return true;
+		};
+	});
+
+	const displayedMatchesData = dateFilteredMatchesData.sort((matchA, matchB) => {
+		const [dayA, monthA, yearA] = matchA.matchStartDate.split('.');
+		const fullYearA = +`20${yearA}`;
+		const matchDateA = new Date(fullYearA, monthA - 1, dayA);
+
+		const [dayB, monthB, yearB] = matchB.matchStartDate.split('.');
+		const fullYearB = +`20${yearB}`;
+		const matchDateB = new Date(fullYearB, monthB - 1, dayB);
+
+		return (matchDateA.getTime() - matchDateB.getTime());
+	});
 
 	return (
 		<View style={styles.wrap}>
@@ -62,7 +118,7 @@ export default function PredictionsSection ({routeName, imgSource, descWord,}) {
 				showsHorizontalScrollIndicator={false}
 				style={{marginBottom: 14}}
 			>
-				{matchesData.map(match => {
+				{dateFilteredMatchesData.map(match => {
 					const {
 						matchId,
 						coefficients,
@@ -86,6 +142,13 @@ export default function PredictionsSection ({routeName, imgSource, descWord,}) {
 						</View>
 					)
 				})}
+				{displayedMatchesData.length === 0 && (
+					<View style={styles.emptyNote}>
+						<Text style={styles.emptyNoteText}>
+							К сожалению, прогнозы на выбранный период отсутствуют
+						</Text>
+					</View>
+				)}
 			</ScrollView>
 		</View>
 	)
@@ -117,5 +180,17 @@ const styles = StyleSheet.create({
 		color: accentColor,
 		fontWeight: 'bold',
 		fontSize: 14,
+	},
+
+	emptyNote: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: 140,
+		width: windowWidth,
+		paddingHorizontal: 20,
+	},
+	emptyNoteText: {
+		fontSize: 20,
+		textAlign: 'center',
 	},
 });
