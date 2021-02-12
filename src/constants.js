@@ -9,8 +9,6 @@ export const gameScreenPadding = 8;
 export const teamImgWidth = windowWidth * 0.2;
 export const teamImgHeight = teamImgWidth;
 
-export const navigationHeaderBarHeight = 54;
-
 //initial values
 export const initialMatchesAmount = 15;
 
@@ -76,6 +74,12 @@ export const routesList = [
 		descWord: 'футбол',
 	},
 ];
+
+//navigation default header bar
+export const navigationHeaderBarHeight = 54;
+
+export const navigationHeaderBarImgWidth = 40;
+export const navigationHeaderBarImgHeight = navigationHeaderBarImgWidth;
 
 //HeaderNavList
 export const headerNavListItemImgWidth = 50;

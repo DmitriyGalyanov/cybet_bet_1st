@@ -27,6 +27,7 @@ export default function HeaderNavListItem ({routeName, imgSource, descWord, }) {
 		if (routeName === 'all') return;
 		navigation.navigate('PredictionsScreen', {
 			routeName: routeName,
+			imgSource: imgSource,
 			descWord: descWord,
 		});
 	};

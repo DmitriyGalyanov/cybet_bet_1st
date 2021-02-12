@@ -22,6 +22,7 @@ export default function PredictionsSection ({routeName, imgSource, descWord,}) {
 	const handleRoutePress = () => {
 		navigation.navigate('PredictionsScreen', {
 			routeName: routeName,
+			imgSource: imgSource,
 			descWord: descWord,
 		});
 	};

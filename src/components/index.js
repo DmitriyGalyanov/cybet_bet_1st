@@ -1,3 +1,5 @@
+import HeaderBar from './HeaderBar';
+
 import HeaderNavList from './HeaderNavList';
 import HeaderDateNav from './HeaderDateNav';
 import PredictionsSection from './PredictionsSection';
@@ -12,6 +14,8 @@ import MainButton from './MainButton';
 
 
 export {
+	HeaderBar,
+
 	HeaderNavList,
 	HeaderDateNav,
 	PredictionsSection,
