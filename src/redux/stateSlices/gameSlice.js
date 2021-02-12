@@ -12,6 +12,7 @@ export const gameSlice = createSlice({
 		matchesDataArray: [],
 
 		currentlySelectedMatch: -1,
+
 		selectedOutcome: {id: -1, name: ''},
 
 		selectedDate: 'any', // 'any' | 'today' | 'tomorrow' | 'later'
@@ -51,9 +52,13 @@ export const gameSlice = createSlice({
 
 export const {
 	createMatchesDataAction,
+
 	setCurrentlySelectedMatch,
+
 	setSelectedOutcome,
+
 	changeBalance,
+
 	removeMatch,
 
 	setSelectedDate,

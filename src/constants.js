@@ -10,7 +10,7 @@ export const teamImgWidth = windowWidth * 0.2;
 export const teamImgHeight = teamImgWidth;
 
 //initial values
-export const initialMatchesAmount = 15;
+export const initialMatchesAmount = 25;
 
 export const initialBalance = 1500;
 
