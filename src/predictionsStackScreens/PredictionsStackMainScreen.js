@@ -5,7 +5,7 @@ import {HeaderNavList, HeaderDateNav, PredictionsSection} from '../components';
 import { routesList } from '../constants';
 
 
-export default function MainGameScreen() {
+export default function PredictionsStackMainScreen() {
 	
 	return (
 		<ScrollView>

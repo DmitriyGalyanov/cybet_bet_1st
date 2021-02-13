@@ -1,7 +1,7 @@
-import MainGameScreen from './MainGameScreen';
+import PredictionsStackMainScreen from './PredictionsStackMainScreen';
 import PredictionsScreen from './PredictionsScreen';
 
 export {
-	MainGameScreen,
+	PredictionsStackMainScreen,
 	PredictionsScreen,
 };

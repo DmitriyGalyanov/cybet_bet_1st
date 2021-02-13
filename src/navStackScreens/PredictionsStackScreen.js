@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-	MainGameScreen,
+	PredictionsStackMainScreen,
 	PredictionsScreen,
 } from '../predictionsStackScreens';
 import {BottomModal, HeaderBar} from '../components';
@@ -15,12 +15,12 @@ export default function PredictionsStackScreen() {
 
 	return (
 		<>
-			<Stack.Navigator initialRouteName='MainGameScreen'
+			<Stack.Navigator initialRouteName='PredictionsStackMainScreen'
 				screenOptions={{
 					header: props => <HeaderBar {...props} />
 				}}
 			>
-				<Stack.Screen name='MainGameScreen' component={MainGameScreen} />
+				<Stack.Screen name='PredictionsStackMainScreen' component={PredictionsStackMainScreen} />
 				<Stack.Screen name='PredictionsScreen' component={PredictionsScreen} />
 			</Stack.Navigator>
 		<BottomModal />
