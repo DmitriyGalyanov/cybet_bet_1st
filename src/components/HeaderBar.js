@@ -2,18 +2,24 @@ import React from 'react';
 
 import {View, Text, Image} from 'react-native';
 
-import { accentColor, masterColor, navigationHeaderBarHeight, navigationHeaderBarImgHeight, navigationHeaderBarImgWidth, windowWidth } from '../constants';
+import {
+	accentColor,
+	masterColor,
+	navigationHeaderBarHeight,
+	navigationHeaderBarImgHeight,
+	navigationHeaderBarImgWidth,
+	windowWidth,
+} from '../constants';
 
 
-export default function HeaderBar(props) {
-	const {name, params} = props.scene.route;
-
-	console.log(name, params)
+export default function HeaderBar({scene, title}) {
+	const {params} = scene?.route;
 
 	const descWord = params ? params.descWord : 'спорт';
+
+	if (!title) title = `Прогнозы на ${descWord}`;
+
 	const imgSource = params?.imgSource;
-
-
 
 	return (
 		<View
@@ -53,7 +59,7 @@ export default function HeaderBar(props) {
 						fontSize: 24,
 					}}
 				>
-					{`Прогнозы на ${descWord}`}
+					{title}
 				</Text>
 				{params && (
 					<View
@@ -64,9 +70,7 @@ export default function HeaderBar(props) {
 						}}
 					/>
 				)}
-
 			</View>
-
 		</View>
 	)
 }
