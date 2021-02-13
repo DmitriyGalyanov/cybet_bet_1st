@@ -26,10 +26,7 @@ export default function Game() {
 	const {matchesDataArray} = useSelector(selectGameData);
 
 	useEffect(() => {
-		createMatches();
-	}, []);
-	useEffect(() => {
-		if (matchesDataArray.length === 1) {
+		if (matchesDataArray.length <= 1) {
 			createMatches();
 		};
 	}, [matchesDataArray]);
