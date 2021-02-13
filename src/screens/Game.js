@@ -1,27 +1,22 @@
 import React, { useEffect } from 'react';
 
 import {
-	MainGameScreen,
-	PredictionsScreen,
-	MatchesListScreen,
-	MakeBetScreen,
-	BetResultScreen,
-} from '../gameScreens';
-import {BottomModal, HeaderBar} from '../components';
+	PredictionsStackScreen,
+	MatchHistoryStackScreen,
+} from '../navStackScreens';
+
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { createMatchesDataAction, selectGameData } from '../redux/stateSlices';
 
-import { mainBGColor, mainColor, masterColor, navigationHeaderBarHeight } from '../constants';
 
-
-const Stack = createStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export default function Game() {
-	const {balance} = useSelector(selectGameData);
 
 	const dispatch = useDispatch();
 	const createMatches = () => {
@@ -42,24 +37,25 @@ export default function Game() {
 	return (
 		<>
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName='MainGameScreen'
-				screenOptions={{
-					header: props => <HeaderBar {...props} />
-				}}
-			>
-				<Stack.Screen name='MainGameScreen' component={MainGameScreen} />
-				<Stack.Screen name='PredictionsScreen' component={PredictionsScreen} />
-
-				<Stack.Screen name='MatchesListScreen' component={MatchesListScreen} />
-				<Stack.Screen name='MakeBetScreen' component={MakeBetScreen} />
-				<Stack.Screen name='BetResultScreen' component={BetResultScreen}
+			<Tab.Navigator initialRouteName='PredictionsStackScreen'>
+				<Tab.Screen name='PredictionsStackScreen' component={PredictionsStackScreen}
 					options={{
-						headerLeft: null
+						title: 'Прогнозы',
+						tabBarIcon: ({ color }) => (
+							<MaterialCommunityIcons name='home' color={color} size={26} />
+						)
 					}}
 				/>
-			</Stack.Navigator>
+				<Tab.Screen name='MatchHistoryStackScreen' component={MatchHistoryStackScreen}
+					options={{
+						title: 'История',
+						tabBarIcon: ({ color }) => (
+							<MaterialCommunityIcons name='bookmark' color={color} size={26} />
+						)
+					}}
+				/>
+			</Tab.Navigator>
 		</NavigationContainer>
-		<BottomModal />
 		</>
 	)
 }
