@@ -10,6 +10,7 @@ import {
 	setBetSuccessModalVisible,
 	setDecisionModalVisible,
 	setSelectedOutcome,
+	setWinningOutcomeId,
 } from '../redux/stateSlices';
 
 import {
@@ -43,13 +44,14 @@ export default function DecisionModal() {
 		coefficients,
 	} = matchesData[selectedMatchIndex === -1 ? 0 : selectedMatchIndex];
 
-	const handleButtonPress = (id, outcomeName) => { ///ID ???
-		dispatch(setSelectedOutcome({id: id, name: outcomeName})); /// ID ???
+	const handleButtonPress = (id, outcomeName) => {
+		dispatch(setSelectedOutcome({id: id, name: outcomeName}));
 
-		const winningBetId = getRandomIntInclusive(0, coefficients.length - 1);
+		const winningOutcomeId = getRandomIntInclusive(0, coefficients.length - 1);
+		dispatch(setWinningOutcomeId(winningOutcomeId));
 		dispatch(setDecisionModalVisible(false));
-		console.log(winningBetId)
-		if (winningBetId === id) {
+
+		if (winningOutcomeId === id) {
 			dispatch(setBetSuccessModalVisible(true));
 		} else {
 			dispatch(setBetFailModalVisible(true));
