@@ -3,7 +3,7 @@ import React from 'react';
 import {
 	MainGameScreen,
 	PredictionsScreen,
-} from '../gameScreens';
+} from '../predictionsStackScreens';
 import {BottomModal, HeaderBar} from '../components';
 
 import {createStackNavigator} from '@react-navigation/stack';
