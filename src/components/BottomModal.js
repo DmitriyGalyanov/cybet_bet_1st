@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { TouchableOpacity, StyleSheet, View, Modal } from 'react-native';
+import { BetFailModal, BetSuccessModal, DecisionModal } from '../modalParts';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
+	moveMatchToHistory,
 	selectModalData,
+	selectGameData,
 	setBetFailModalVisible,
 	setBetSuccessModalVisible,
 	setDecisionModalVisible,
@@ -15,7 +18,6 @@ import {
 	windowHeight,
 	windowWidth,
 } from '../constants';
-import { BetFailModal, BetSuccessModal, DecisionModal } from '../modalParts';
 
 
 export default function BottomModal() {
@@ -28,11 +30,21 @@ export default function BottomModal() {
 		betFailModalVisible,
 	} = useSelector(selectModalData);
 
+	const {currentlySelectedMatch, selectedOutcome, winningOutcomeId} = useSelector(selectGameData);
+
 	const hideModal = () => {
 		dispatch(setModalVisible(false));
 		dispatch(setDecisionModalVisible(false));
 		dispatch(setBetSuccessModalVisible(false));
 		dispatch(setBetFailModalVisible(false));
+
+		if (selectedOutcome.id !== -1) {
+			dispatch(moveMatchToHistory({
+				matchId: currentlySelectedMatch,
+				selectedOutcome: selectedOutcome,
+				winningOutcomeId: winningOutcomeId,
+			}));
+		};
 	};
 
 	return (
