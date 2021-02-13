@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { MatchTile } from '../components';
 import { windowWidth } from '../constants';
 import { useSelector } from 'react-redux';
@@ -14,12 +14,12 @@ PredictionsScreen.propTypes = {
 		name: PropTypes.string,
 		params: PropTypes.shape({
 			routeName: PropTypes.string.isRequired,
-			descWord: PropTypes.string.isRequired,
+			descWord: PropTypes.string,
 		})
 	}).isRequired,
 };
 export default function PredictionsScreen ({route}) {
-	const {routeName, descWord} = route.params;
+	const {routeName} = route.params;
 
 	const matchesData = useSelector(selectGameData).matchesDataArray
 		.filter(match => match.belongsTo === routeName);
@@ -52,28 +52,21 @@ export default function PredictionsScreen ({route}) {
 					matchStartDate,
 					matchStartTime,
 					secondTeamId,
-					// belongsTo,//
+					discipline,
 					} = match;
 
 				return (
-					<View style={styles.tileWrap} key={matchId}>
-						<MatchTile
-							matchId={matchId}
-							firstTeamId={firstTeamId}
-							matchStartDate={matchStartDate}
-							matchStartTime={matchStartTime}
-							secondTeamId={secondTeamId}
-							coefficients={coefficients}
-							descWord={descWord}
-						/>
-					</View>
+					<MatchTile key={matchId}
+						matchId={matchId}
+						firstTeamId={firstTeamId}
+						matchStartDate={matchStartDate}
+						matchStartTime={matchStartTime}
+						secondTeamId={secondTeamId}
+						coefficients={coefficients}
+						discipline={discipline}
+					/>
 				)
 			})}
 		</ScrollView>
 	)
 }
-
-const styles = StyleSheet.create({
-
-	tileWrap: {},
-});
