@@ -128,6 +128,7 @@ export const createMatches = () => {
 			secondTeamId: secondTeamId,
 			coefficients: coefficients,
 			belongsTo: 'footballPredictionsScreen',
+			discipline: 'футбол',
 		};
 		matchesArray.push(match);
 	};
