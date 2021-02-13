@@ -20,7 +20,6 @@ import {
 	matchTileMaxWidth,
 } from '../constants';
 
-import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setCurrentlySelectedMatch, setDecisionModalVisible, setModalVisible } from '../redux/stateSlices';
 
@@ -36,7 +35,10 @@ MatchTile.propTypes = {
 		outcomeName: PropTypes.string,
 		coefficient: PropTypes.number,
 	})).isRequired,
-	descWord: PropTypes.string.isRequired,
+	discipline: PropTypes.string.isRequired,
+	isHistory: PropTypes.bool,
+	selectedOutcome: PropTypes.number,
+	winningOutcomeId: PropTypes.number,
 };
 /**
  * @param {{
@@ -50,7 +52,10 @@ MatchTile.propTypes = {
  * 	outcomeName: string,
  * 	coefficient: number
  * }],
- * descWord: string,
+ * discipline: string,
+ * isHistory: ?boolean,
+ * selectedOutcome: ?number,
+ * winningOutcomeId: ?number,
  * }} props
  */
 export default function MatchTile({
@@ -60,22 +65,22 @@ export default function MatchTile({
 	matchStartTime,
 	secondTeamId,
 	coefficients,
-	descWord,
+	discipline,
+	isHistory,
+	selectedOutcome,
+	winningOutcomeId,
 }) {
 	const dispatch = useDispatch();
 
-	const navigation = useNavigation();
-	const navigateToMakeBetScreen = () => {
+	const callModal = () => {
+		if (isHistory) return;
 		dispatch(setCurrentlySelectedMatch(matchId));
 		dispatch(setModalVisible(true));
 		dispatch(setDecisionModalVisible(true));
-		// navigation.navigate('MakeBetScreen', {
-		// 	matchId: matchId,
-		// });
 	};
 
 	return (
-		<TouchableOpacity onPress={navigateToMakeBetScreen}
+		<TouchableOpacity onPress={callModal}
 			style={{
 				backgroundColor: matchTileBGColor,
 				elevation: 3,
@@ -107,8 +112,24 @@ export default function MatchTile({
 				<View style={styles.coefficientsWrap}>
 					{coefficients.map(coef => {
 						const {id, outcomeName, coefficient} = coef;
+						let bgColor = '#3A4453';
+						if (id === winningOutcomeId) {
+							bgColor = 'green';
+						}
+						if (selectedOutcome === id && id !== winningOutcomeId) {
+							console.log('red')
+							bgColor = 'red';
+						};
+						
 						return (
-							<View style={styles.coef} key={id}>
+							<View outcomeId key={id}
+								style={[
+									styles.coef,
+									{
+										backgroundColor: bgColor,
+									}
+								]}
+							>
 								<Text style={styles.coefText}>
 									{coefficient}
 								</Text>
@@ -119,7 +140,7 @@ export default function MatchTile({
 
 				<View style={styles.footer}>
 					<Text style={styles.footerText}>
-						{descWord}
+						{discipline}
 					</Text>
 					<Text style={styles.footerText}>
 						{matchStartTime}
