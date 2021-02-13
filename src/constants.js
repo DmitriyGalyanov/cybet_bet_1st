@@ -16,12 +16,6 @@ export const initialBalance = 1500;
 
 export const betAmount = 100; //unchangeable ...
 
-export const resultsInRuArray = [
-	'Победа левой команды',
-	'Ничья',
-	'Победа правой команды',
-];
-
 //styles
 export const mainBGColor = '#242422';
 
@@ -33,31 +27,6 @@ export const masterColor = 'white';
 export const accentColor = '#2B6DDB';
 export const mainTextColor = 'black';
 export const grayedTextColor = '#ACACAC';
-
-export const mainButtonsTextStyle = {
-	color: mainColor,
-	textTransform: 'uppercase',
-	fontSize: 18,
-	fontWeight: 'bold',
-};
-
-export const coloredHeadersTextStyle = {
-	color: mainColor,
-	fontSize: 22,
-	fontWeight: 'bold',
-	textTransform: 'uppercase',
-};
-export const headersTextStyle = {
-	color: '#000',
-	fontSize: 22,
-	fontWeight: 'bold',
-	textTransform: 'uppercase',
-};
-
-export const secondaryTextStyle = {
-	color: mainColor,
-	fontSize: 20,
-};
 
 //routes
 import {headerNavListItemsArray} from '../assets/images';
@@ -107,7 +76,6 @@ export const headerDateNavItemsData = [
 	},
 ];
 
-// export const headerDateNavItemWidth = windowWidth / headerDateNavItemsData.length;
 export const headerDateNavItemWidth = windowWidth / headerDateNavItemsData.length <= 115
 	? windowWidth / headerDateNavItemsData.length
 	: 115;
