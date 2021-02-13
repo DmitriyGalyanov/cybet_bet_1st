@@ -11,9 +11,12 @@ export const gameSlice = createSlice({
 
 		matchesDataArray: [],
 
+		matchHistoryDataArray: [],
+
 		currentlySelectedMatch: -1,
 
 		selectedOutcome: {id: -1, name: ''},
+		winningOutcomeId: -1,
 
 		selectedDate: 'any', // 'any' | 'today' | 'tomorrow' | 'later'
 	},
@@ -30,23 +33,34 @@ export const gameSlice = createSlice({
 		setSelectedOutcome: (state, action) => {
 			state.selectedOutcome = action.payload;
 		},
+		setWinningOutcomeId: (state, action) => {
+			state.winningOutcomeId = action.payload;
+		},
 
 		changeBalance: (state, action) => {
 			state.balance = state.balance + action.payload;
 		},
 
-		removeMatch: (state, action) => {
+		moveMatchToHistory: (state, action) => {
+			const {matchId, selectedOutcome, winningOutcomeId} = action.payload;
+
 			const selectedMatchIndex = state.matchesDataArray.findIndex(match => {
-				return match.matchId === action.payload;
+				return match.matchId === matchId;
 			});
-			console.log(selectedMatchIndex, 'gameSlice');
-			state.matchesDataArray.splice(selectedMatchIndex, 1); //will it work as expected?
+
+			let movableMatch = state.matchesDataArray.splice(selectedMatchIndex, 1);
+			movableMatch[0].selectedOutcome = selectedOutcome.id;
+			movableMatch[0].winningOutcomeId = winningOutcomeId;
+
+			let updatedMatchHistoryDataArray = [...state.matchHistoryDataArray];
+			updatedMatchHistoryDataArray.push(movableMatch[0]);
+
+			state.matchHistoryDataArray = updatedMatchHistoryDataArray;
 		},
 
 		setSelectedDate: (state, action) => {
 			state.selectedDate = action.payload;
 		},
-
 	}
 });
 
@@ -56,10 +70,11 @@ export const {
 	setCurrentlySelectedMatch,
 
 	setSelectedOutcome,
+	setWinningOutcomeId,
 
 	changeBalance,
 
-	removeMatch,
+	moveMatchToHistory,
 
 	setSelectedDate,
 } = gameSlice.actions;

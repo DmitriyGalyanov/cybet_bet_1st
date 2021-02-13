@@ -4,10 +4,11 @@ import gameSliceReducer, {
 	setCurrentlySelectedMatch,
 
 	setSelectedOutcome,
+	setWinningOutcomeId,
 
 	changeBalance,
 
-	removeMatch,
+	moveMatchToHistory,
 
 	setSelectedDate,
 
@@ -32,10 +33,11 @@ export {
 	setCurrentlySelectedMatch,
 
 	setSelectedOutcome,
+	setWinningOutcomeId,
 	
 	changeBalance,
 
-	removeMatch,
+	moveMatchToHistory,
 
 	setSelectedDate,
 
