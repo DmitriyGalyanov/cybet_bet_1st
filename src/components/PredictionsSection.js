@@ -126,6 +126,7 @@ export default function PredictionsSection ({routeName, imgSource, descWord,}) {
 						matchStartDate,
 						matchStartTime,
 						secondTeamId,
+						discipline,
 					} = match;
 
 					return (
@@ -137,7 +138,7 @@ export default function PredictionsSection ({routeName, imgSource, descWord,}) {
 								matchStartTime={matchStartTime}
 								secondTeamId={secondTeamId}
 								coefficients={coefficients}
-								descWord={descWord}
+								discipline={discipline}
 							/>
 						</View>
 					)
