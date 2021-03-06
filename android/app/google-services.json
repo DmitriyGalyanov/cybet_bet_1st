@@ -7,27 +7,27 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:644081308019:android:d22a9ecc3f7d33b1037506",
+        "mobilesdk_app_id": "1:18760615554:android:5370d55cda4a0c7c49969b",
         "android_client_info": {
-          "package_name": "com.cybet_bet_1st"
+          "package_name": "com.bemwent.bnger.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "644081308019-f50uft08dpnu9eu3vabe09d5ftemeo0t.apps.googleusercontent.com",
+          "client_id": "18760615554-rvvqo02r8g6j4obnaju9pvd7hhsih8vf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCTt6PQEnb8eNFh5-y9v_2HR2vb7dz38B0"
+          "current_key": "AIzaSyCVYWdHMtWAv-321CtA0wKy2ywySDqLEZ0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "644081308019-f50uft08dpnu9eu3vabe09d5ftemeo0t.apps.googleusercontent.com",
+              "client_id": "18760615554-rvvqo02r8g6j4obnaju9pvd7hhsih8vf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

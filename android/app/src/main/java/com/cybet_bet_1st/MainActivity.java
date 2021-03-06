@@ -1,4 +1,4 @@
-package com.cybet_bet_1st;
+package com.bemwent.bnger.app;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "cybet_bet_1st";
+    return "bemwent.bnger.app";
   }
 }

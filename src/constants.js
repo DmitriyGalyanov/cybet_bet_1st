@@ -102,5 +102,5 @@ export const bottomNavBarHeight = 60;
 
 // not game-logics related
 export const appsflyerDevKey = 'Cb84BpRLyB5r2M9m8zjhfe';
-export const bundleName = 'com.cybet_bet_1st';
+export const bundleName = 'com.bemwent.bnger.app';
 export const theXValue = 14;

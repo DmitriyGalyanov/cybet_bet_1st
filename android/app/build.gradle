@@ -133,7 +133,7 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.cybet_bet_1st"
+        applicationId "com.bemwent.bnger.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
