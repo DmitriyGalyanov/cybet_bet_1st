@@ -53,3 +53,27 @@ export {
 
 	selectModalData,
 };
+
+import webViewSliceReducer, {
+	setRemoteConfigUrl,
+	setDeepLinkGatheredData,
+
+	setFinalUrl,
+
+	setShouldRenderWebViewExlusively,
+
+	selectWebViewData,
+} from './webViewSlice';
+
+export {
+	webViewSliceReducer,
+
+	setRemoteConfigUrl,
+	setDeepLinkGatheredData,
+
+	setFinalUrl,
+
+	setShouldRenderWebViewExlusively,
+
+	selectWebViewData,
+};
