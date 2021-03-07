@@ -22,3 +22,5 @@ export {
 	TeamImg,
 	MatchTile,
 };
+
+export * from './PercentageLoadingBar';
